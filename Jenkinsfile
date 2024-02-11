@@ -8,7 +8,7 @@ pipeline {
                 deleteDir()
 
                 // Checkout code from Git
-                git 'https://your-git-repo-url.git'
+                git 'https://github.com/CHAPARALAATCHUTKUMAR/JavaApp.git'
 
                 // Build with Maven
                 sh 'mvn clean install'
