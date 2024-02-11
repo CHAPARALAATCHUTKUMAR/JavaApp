@@ -8,7 +8,9 @@ pipeline {
                 deleteDir()
 
                 // Checkout code from Git
-                // git 'https://github.com/CHAPARALAATCHUTKUMAR/JavaApp.git'
+                 checkout([$class: 'GitSCM', 
+                          branches: [[name: '*/main']], 
+                          userRemoteConfigs: [[url: 'https://github.com/CHAPARALAATCHUTKUMAR/JavaApp.git']]])
 
                 // Build with Maven
                 sh 'mvn clean install'
