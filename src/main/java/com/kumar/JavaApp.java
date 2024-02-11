@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class JavaApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(MyJavaApp.class, args);
+        SpringApplication.run(JavaApp.class, args);
     }
 
     @GetMapping("/")
