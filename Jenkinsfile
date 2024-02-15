@@ -27,14 +27,20 @@ pipeline {
         stage('Build Docker Image for Tomcat') {
             steps {
                 script {
+            // Print the current workspace contents
                     sh 'ls -lart'
-                    sh 'mkdir -p docker-build && cd docker-build && ls -lart'
-                    
-                    // Copy the Dockerfile and built artifact to the existing workspace
-                    sh 'cp /Dockerfile /target/JavaApp-1.0-SNAPSHOT.jar /docker-build'
-
+        
+                    // Create the docker-build directory and navigate to it
+                    sh 'mkdir -p docker-build && cd docker-build'
+        
+                    // Copy the Dockerfile and built artifact to the docker-build directory
+                    sh 'cp ../Dockerfile ../target/JavaApp-1.0-SNAPSHOT.jar .'
+        
+                    // Print the contents of the docker-build directory
+                    sh 'ls -lart'
+        
                     // Build Docker image with Tomcat and the copied artifact
-                    sh 'sudo docker build -t public.ecr.aws/o5y1r0b2/kumardevops:tomcat /docker-build'
+                    sh 'docker build -t public.ecr.aws/o5y1r0b2/kumardevops:tomcat .'
                 }
             }
         }
