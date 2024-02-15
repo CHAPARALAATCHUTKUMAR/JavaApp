@@ -8,12 +8,19 @@ pipeline {
                 deleteDir()
 
                 // Checkout code from Git
-                 checkout([$class: 'GitSCM', 
+                checkout([$class: 'GitSCM', 
                           branches: [[name: '*/main']], 
                           userRemoteConfigs: [[url: 'https://github.com/CHAPARALAATCHUTKUMAR/JavaApp.git']]])
 
                 // Build with Maven
                 sh 'mvn clean install'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Run JUnit tests
+                sh 'mvn test'
             }
         }
 
