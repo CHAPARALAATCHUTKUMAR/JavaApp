@@ -40,7 +40,7 @@ pipeline {
                     // sh 'ls -lart'
         
                     // Build Docker image with Tomcat and the copied artifact
-                    sh 'docker build -t public.ecr.aws/o5y1r0b2/kumardevops:tomcat .'
+                    sh 'sudo docker build -t public.ecr.aws/o5y1r0b2/kumardevops:tomcat .'
                 }
             }
         }
