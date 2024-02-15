@@ -27,7 +27,8 @@ pipeline {
         stage('Build Docker Image for Tomcat') {
             steps {
                 script {
-                    sh 'mkdir -p docker-build && cd docker-build'
+                    sh 'ls -lart'
+                    sh 'mkdir -p docker-build && cd docker-build && ls -lart'
                     
                     // Copy the Dockerfile and built artifact to the existing workspace
                     sh 'cp Dockerfile target/JavaApp-1.0-SNAPSHOT.jar docker-build/'
