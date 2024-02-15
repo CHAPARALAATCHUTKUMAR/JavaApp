@@ -50,7 +50,7 @@ pipeline {
                 script {
                     // Authenticate Docker to your ECR registry
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_CRED', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                        sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/o5y1r0b2/kumardevops"
+                        sh "aws ecr get-login-password --region us-east-1 |sudo docker login --username AWS --password-stdin public.ecr.aws/o5y1r0b2/kumardevops"
                     }
 
                     // Push the Docker image to ECR
