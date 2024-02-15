@@ -32,7 +32,7 @@ pipeline {
                     sh 'cp Dockerfile target/JavaApp-1.0-SNAPSHOT.jar docker-build/'
 
                     // Build Docker image with Tomcat and the copied artifact
-                    sh 'docker build -t public.ecr.aws/o5y1r0b2/kumardevops:tomcat docker-build/'
+                    sh 'sudo docker build -t public.ecr.aws/o5y1r0b2/kumardevops:tomcat docker-build/'
                 }
             }
         }
@@ -46,7 +46,7 @@ pipeline {
                     }
 
                     // Push the Docker image to ECR
-                    sh 'docker push public.ecr.aws/o5y1r0b2/kumardevops'
+                    sh 'sudo docker push public.ecr.aws/o5y1r0b2/kumardevops'
                 }
             }
         }
