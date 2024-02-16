@@ -44,6 +44,19 @@ pipeline {
                 }
             }
         }
+        stage('Trivy Image Scan') {
+            steps {
+                script {
+                    // Install Trivy
+                    sh 'wget https://github.com/aquasecurity/trivy/releases/download/v0.20.0/trivy_0.20.0_Linux-64bit.tar.gz'
+                    sh 'tar zxvf trivy_0.20.0_Linux-64bit.tar.gz'
+                    sh 'sudo mv trivy /usr/local/bin/'
+
+                    // Scan Docker image
+                    sh 'trivy image -s HIGH,CRITICAL public.ecr.aws/o5y1r0b2/kumardevops:tomcat'
+                }
+            }
+        }
 
         stage('Push Docker Image to ECR') {
             steps {
