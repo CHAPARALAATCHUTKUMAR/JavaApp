@@ -50,15 +50,11 @@ pipeline {
                 script {
              // Authenticate Docker to your ECR registry
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_CRED', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                            def ecrLoginCmd = "aws ecr get-login-password --region us-east-1"
-                            def dockerLoginCmd = "sudo docker login --username AWS --password \$( ${ecrLoginCmd} ) public.ecr.aws/o5y1r0b2/kumardevops"
-            
-                            // Execute the Docker login command
-                            sh dockerLoginCmd
+                        sh 'aws ecr-public get-login-password --region us-east-1 |sudo docker login --username AWS --password-stdin public.ecr.aws/o5y1r0b2'
                         }
             
                         // Push the Docker image to ECR
-                        sh 'sudo docker push public.ecr.aws/o5y1r0b2/kumardevops'
+                        sh 'sudo docker push public.ecr.aws/o5y1r0b2/kumardevops:tomcat'
                 }
             }
         }

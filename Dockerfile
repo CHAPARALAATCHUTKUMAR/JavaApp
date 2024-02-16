@@ -5,7 +5,7 @@ FROM tomcat:9-jre8
 WORKDIR /app
 
 # Copy the built artifact to the Tomcat webapps directory
-COPY target/JavaApp-1.0-SNAPSHOT.jar /usr/local/tomcat/webapps/
+COPY ../target/JavaApp-1.0-SNAPSHOT.jar /usr/local/tomcat/webapps/
 
 # Expose the port that Tomcat will run on
 EXPOSE 8080
